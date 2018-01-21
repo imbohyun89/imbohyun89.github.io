@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wt.mapper.LikeyMapper">
+<resultMap type="likey" id="likeyResult">
+		<result column="sq_num" property="sq_num"/>
+		<result column="city_num" property="city_num"/>
+		<result column="user_id" property="user_id"/>
+</resultMap>
+	
+	<select id="select" parameterType="java.lang.Integer" resultMap="likeyResult">
+		SELECT * FROM WT_LIKEY WHERE sq_num=#{obj}
+	</select>
+	<select id="selectall" resultType="likey">
+		SELECT * FROM WT_LIKEY
+	</select>
+	<select id="selectid" parameterType="String" resultType="likey">
+		SELECT * FROM WT_LIKEY WHERE user_id=#{obj}
+	</select>
+	<insert id="insert" parameterType="likey">
+		INSERT INTO WT_LIKEY VALUES(SEQ_LIKEY.nextVal,#{city_num},#{user_id})
+	</insert>
+	<update id="update" parameterType="likey">
+		UPDATE WT_LIKEY SET city_num=#{city_num},user_id=#{user_id} WHERE sq_num=#{sq_num}
+	</update>
+	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM WT_LIKEY WHERE sq_num=#{obj}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
